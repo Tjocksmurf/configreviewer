@@ -1,0 +1,41 @@
+<h4>Content Types</h4>
+{% for ct in cts %}
+    <h5 class="text-danger type" data-toggle="collapse"
+        data-target="#{{ ct['data']['type'] }}">{{ ct['data']['name'] }}</h5>
+    <div class="{{ collapse }}" id="{{ ct['data']['type'] }}">
+        <table class="table">
+            <tr>
+                <td class="font-weight-bold">Machine name:</td>
+                <td>{{ ct.data.type }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Description:</td>
+                <td>{{ ct.data.description }}</td>
+            </tr>
+        </table>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Title</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Desc</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for f in ct.fields %}
+                {% if f.field_name not in ignore %}
+                    <tr>
+                        <td>{{ f.label }}</td>
+                        <td>{{ f.field_name }}</td>
+                        <td>{{ f.label }}</td>
+
+
+                        <td class="{{ '.' in f.description ? '' : 'text-danger ' }} {{ f.description|split(' ')|length < 2 ? 'text-danger' : '' }}{{ ' url' in f.description ? ' text-danger ' : ' ' }}">{{ f.description }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endfor %}

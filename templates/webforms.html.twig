@@ -1,0 +1,20 @@
+<h4 class="text-danger type" data-toggle="collapse"
+    data-target="#webforms">Webforms</h4>
+<div class="{{ collapse }}" id="webforms">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Webform title</th>
+            <th>Email handler</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for w in wfs %}
+            <tr>
+                <td>{{ w.title }}</td>
+                <td>{{ w.email }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,90 @@
+{#{{ "now"|date("F jS \\a\\t g:ia") }}#}
+<h4 class="text-danger type" data-toggle="collapse"
+    data-target="#performance-settings">Settings</h4>
+<div class="{{ collapse }}" id="performance-settings">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Label</th>
+            <th>Setting</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Cache settings max age</td>
+            <td>{{ settings.performance.cache.page.max_age/60/60 }}h</td>
+        </tr>
+        <tr>
+            <td>Preprocess CSS</td>
+            <td>{{ settings.performance.css.preprocess == 1 ? 'Yes' : "No" }}</td>
+        </tr>
+        <tr>
+            <td>Preprocess JS</td>
+            <td>{{ settings.performance.js.preprocess == 1 ? 'Yes' : "No" }}</td>
+        </tr>
+        </tr>
+        <tr>
+            <td>Date format</td>
+            <td>{{ settings.dateformat.pattern }}</td>
+        </tr>
+        <tr>
+            <td>Language code</td>
+            <td>{{ settings.dateformat.langcode }}</td>
+        </tr>
+        <tr>
+            <td>Site name</td>
+            <td>{{ settings.system.name }}</td>
+        </tr>
+        <tr>
+            <td>Site dlogan</td>
+            <td>{{ settings.system.slogan }}</td>
+        </tr>
+        <tr>
+            <td>Front page</td>
+            <td>{{ settings.system.page.front }}</td>
+        </tr>
+        <tr>
+            <td>403 page</td>
+            <td>{{ settings.system.page['403'] }}</td>
+        </tr>
+        <tr>
+            <td>404 page</td>
+            <td>{{ settings.system.page['404'] }}</td>
+        </tr>
+        <tr>
+            <td>Errors</td>
+            <td>{{ settings.log.error_level == 'hide' ?  "Hide errors" : "Show errors" }}</td>
+        </tr>
+        <tr>
+            <td>TFA enabled</td>
+            <td>{{ settings.tfa.enabled == 1 ?  "Yes" : "No" }}</td>
+        </tr>
+        <tr>
+            <td>TFA issuer</td>
+            <td>{{ settings.tfa.validation_plugin_settings.tfa_totp.issuer}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4 class="text-danger type" data-toggle="collapse"
+    data-target="#dev-settings">Key extensions</h4>
+<div class="{{ collapse }}" id="dev-settings">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Module name</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for e in extensions %}
+            <tr>
+                <td>{{ e|replace({'_': " "}) }}</td>
+                <td>Enabled</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,20 @@
+<h4 class="text-danger type" data-toggle="collapse"
+    data-target="#taxonomies">Taxonomies</h4>
+<div class="{{ collapse }}" id="taxonomies">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Taxonomy Name</th>
+            <th>Machine name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tax in taxonomies %}
+            <tr>
+                <td>{{ tax.name }}</td>
+                <td>{{ tax.vid }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
