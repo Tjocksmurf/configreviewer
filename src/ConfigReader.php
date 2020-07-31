@@ -1,11 +1,11 @@
 <?php
 
-//namespace morpht\configreader;
+namespace Morpht;
 
 /*
  * @ToDo: Add other reader functions
  */
-
+use Spyc;
 
 /**
  * Class ConfigReader

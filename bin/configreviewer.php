@@ -1,4 +1,7 @@
 <?php
+require_once 'vendor/autoload.php';
+use Morpht\ConfigReader;
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -9,12 +12,6 @@ if (defined('STDIN')) {
     $dir = $argv[1];
   }
 }
-else {
-
-}
-require_once '../../../autoload.php';
-
-require_once('../src/ConfigReader.php');
 
 $loader = new \Twig\Loader\FilesystemLoader(realpath(dirname(__FILE__) . '/..'));
 $twig = new \Twig\Environment($loader, [
@@ -22,10 +19,7 @@ $twig = new \Twig\Environment($loader, [
 ]);
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-
-$traverse = '../../../../';
-
-$cr = new ConfigReader($traverse.$dir);
+$cr = new ConfigReader($dir);
 
 $settings = $cr->getSettings();
 $key_extensions = $cr->getExtensions();
@@ -47,13 +41,16 @@ $page = $twig->render('templates/main.html.twig', [
   'paragraphs' => $paragraphs,
 ]);
 
+//Output page if ran in browser, if not create a file.
 if (!defined('STDIN')) {
   echo $page;
+} else{
+  $review = fopen("config.htm", "w") or die("Unable to open file!");
+  fwrite($review, $page);
+  fclose($review);
 }
 
-$review = fopen("../../../../config.htm", "w") or die("Unable to open file!");
-fwrite($review, $page);
-fclose($review);
+
 
 
 

@@ -12,5 +12,8 @@
     "require": {
         "twig/twig": "^1.41 || ^2.12",
         "mustangostang/spyc": "0.6.*"
+    },
+    "autoload": {
+        "classmap": [ "src/Morpht/ConfigReader.php" ]
     }
 }
