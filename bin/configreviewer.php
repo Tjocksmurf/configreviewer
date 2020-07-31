@@ -48,10 +48,7 @@ if (!defined('STDIN')) {
   $review = fopen("config.htm", "w") or die("Unable to open file!");
   fwrite($review, $page);
   fclose($review);
+  echo "----------------------------------------\n";
+  echo "-- Config review saved to config.html --\n";
+  echo "----------------------------------------\n";
 }
-
-
-
-
-
-
