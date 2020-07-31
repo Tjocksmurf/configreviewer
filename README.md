@@ -1,14 +1,15 @@
-#configreviewer
+# configreviewer
+
 Review the configuration of Drupal sites.
 
-##Installation
+## Installation
 
-composer require morpht/configreviewier
+`composer require morpht/configreviewier`
 
-##Usage
+## Usage
 
-php vendor/morpht/configreviewier/bin/configreviewer.php
+`php vendor/morpht/configreviewier/bin/configreviewer.php`
 
 or
 
-php vendor/morpht/configreviewier/bin/configreviewer.php PATHTOCONFIGFOLDER
+`php vendor/morpht/configreviewier/bin/configreviewer.php PATHTOCONFIGFOLDER`
