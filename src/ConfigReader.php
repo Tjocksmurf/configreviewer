@@ -65,7 +65,7 @@ class ConfigReader {
     $extensions = Spyc::YAMLLoad($this->configdir . 'core.extension.yml');
     $keymodules = ['devel', 'syslog'];
     $key_extensions = [];
-
+    
     foreach ($extensions['module'] as $key => $e) {
       if (in_array($key, $keymodules)) {
         $key_extensions[] = $key;

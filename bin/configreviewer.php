@@ -13,13 +13,21 @@ if (defined('STDIN')) {
   }
 }
 
+//var_dump(scandir(getcwd() . '/' .$dir));
+
 $loader = new \Twig\Loader\FilesystemLoader(realpath(dirname(__FILE__) . '/..'));
 $twig = new \Twig\Environment($loader, [
   'debug' => TRUE,
 ]);
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-$cr = new ConfigReader($dir);
+if(substr($dir, -1) != '/'){
+    $dir = $dir . '/';
+}
+
+echo $dir;
+
+$cr = new ConfigReader(getcwd() . '/' .$dir);
 
 $settings = $cr->getSettings();
 $key_extensions = $cr->getExtensions();
