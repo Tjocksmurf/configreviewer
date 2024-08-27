@@ -13,8 +13,6 @@ if (defined('STDIN')) {
   }
 }
 
-//var_dump(scandir(getcwd() . '/' .$dir));
-
 $loader = new \Twig\Loader\FilesystemLoader(realpath(dirname(__FILE__) . '/..'));
 $twig = new \Twig\Environment($loader, [
   'debug' => TRUE,
@@ -27,7 +25,7 @@ if(substr($dir, -1) != '/'){
 
 echo $dir;
 
-$cr = new ConfigReader(getcwd() . '/' .$dir);
+$cr = new ConfigReader($dir);
 
 $settings = $cr->getSettings();
 $key_extensions = $cr->getExtensions();

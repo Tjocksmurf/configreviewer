@@ -2,7 +2,8 @@
 {% for ct in cts %}
     <h5 class="text-danger type" data-toggle="collapse"
         data-target="#{{ ct['data']['type'] }}">{{ ct['data']['name'] }}</h5>
-    <div class="{{ collapse }}" id="{{ ct['data']['type'] }}">
+<div class="collapse {{ collapse }}" id="{{ ct['data']['type'] }}">
+
         <table class="table">
             <tr>
                 <td class="font-weight-bold">Machine name:</td>
@@ -26,11 +27,10 @@
             {% for f in ct.fields %}
                 {% if f.field_name not in ignore %}
                     <tr>
-                        <td>{{ f.label }}</td>
+                        <td>{{ f.label }}{% if f.required %}<span style="color: red;">*</span>{% endif %}
+                        </td>
                         <td>{{ f.field_name }}</td>
-                        <td>{{ f.label }}</td>
-
-
+                        <td>{{ f.field_type|replace({'_': ' '})|capitalize  }}</td>
                         <td class="{{ '.' in f.description ? '' : 'text-danger ' }} {{ f.description|split(' ')|length < 2 ? 'text-danger' : '' }}{{ ' url' in f.description ? ' text-danger ' : ' ' }}">{{ f.description }}</td>
                     </tr>
                 {% endif %}

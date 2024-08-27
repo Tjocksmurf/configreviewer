@@ -2,7 +2,8 @@
 {% for para in paragraphs %}
     <h5 class="text-danger type" data-toggle="collapse"
         data-target="#{{ para["id"] }}">{{ para["label"] }}</h5>
-    <div class="{{ collapse }}" id="{{ para["id"] }}">
+<div class="collapse {{ collapse }}" id="{{ para["id"] }}">
+
         <table class="table">
             <tr>
                 <td class="font-weight-bold">Machine name:</td>
@@ -28,7 +29,8 @@
                     <tr>
                         <td>{{ f.label }}</td>
                         <td>{{ f.field_name }}</td>
-                        <td>{{ f.label }}</td>
+<td>{{ f.field_type }}</td>
+
 
 
                         <td class="{{ '.' in f.description ? '' : 'text-danger ' }} {{ f.description|split(' ')|length < 2 ? 'text-danger' : '' }}{{ ' url' in f.description ? ' text-danger ' : ' ' }}">{{ f.description }}</td>

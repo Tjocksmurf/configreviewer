@@ -5,12 +5,16 @@ namespace Morpht;
 /*
  * @ToDo: Add other reader functions
  */
+
 use Spyc;
 
 /**
  * Class ConfigReader
  */
 class ConfigReader {
+
+  public $configdir;
+  public $allfiles;
 
   public function __construct($configdir) {
     $this->configdir = $configdir;
@@ -46,16 +50,12 @@ class ConfigReader {
       $wfs[$key]['title'] = $w['title'];
       if (isset($w['handlers']['email'])) {
         $wfs[$key]['email'] = $w['handlers']['email']['settings']['to_mail'];
-      }
-      else {
+      } else {
         $wfs[$key]['email'] = "No email handler configured.";
       }
-
     }
 
     return $wfs;
-
-
   }
 
   /**
@@ -65,7 +65,7 @@ class ConfigReader {
     $extensions = Spyc::YAMLLoad($this->configdir . 'core.extension.yml');
     $keymodules = ['devel', 'syslog'];
     $key_extensions = [];
-    
+
     foreach ($extensions['module'] as $key => $e) {
       if (in_array($key, $keymodules)) {
         $key_extensions[] = $key;
@@ -125,11 +125,11 @@ class ConfigReader {
   /**
    * @return array
    */
-  public function getParagraphs(){
+  public function getParagraphs() {
     $paragraphs = glob($this->configdir . "paragraphs.paragraphs_type.*.yml");
 
     $paralist = [];
-    $pars= [];
+    $pars = [];
     foreach ($paragraphs as $key => $p) {
 
       $par = Spyc::YAMLLoad($p);
@@ -161,7 +161,7 @@ class ConfigReader {
   /**
    * @return array
    */
-  public function getTaxonomies(){
+  public function getTaxonomies() {
     $tax = glob($this->configdir . "taxonomy.vocabulary.*.yml");
 
     $taxonomies = [];
@@ -180,7 +180,7 @@ class ConfigReader {
   /**
    * @return array
    */
-  public function getContentTypes(){
+  public function getContentTypes() {
     $field_exceptions = [
       'field_components',
       'field_read_speaker',
@@ -215,6 +215,4 @@ class ConfigReader {
 
     return $typelist;
   }
-
-
 }
